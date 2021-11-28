@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Memorandum;
+use App\Http\Resources\MemorandumResource;
 
 class MemorandumController extends Controller
 {
@@ -13,7 +15,8 @@ class MemorandumController extends Controller
      */
     public function index()
     {
-        //
+        $memorandum= Memorandum::all();
+        return $memorandum;
     }
 
     /**
@@ -34,7 +37,18 @@ class MemorandumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $memorandum= new Memorandum();
+        $memorandum->id_estado_oficio=$request->id_estado_oficio;
+        
+        $memorandum->fecha_elaboracion=$request->fecha_elaboracion;
+        $memorandum->dirijido=$request->dirijido;
+        $memorandum->asunto=$request->asunto;
+        $memorandum->borrado=$request->borrado;
+
+        if($memorandum->save()){
+            return new MemorandumResource($memorandum);
+        }
+
     }
 
     /**
@@ -45,7 +59,8 @@ class MemorandumController extends Controller
      */
     public function show($id)
     {
-        //
+        $memorandum = Memorandum::findOrFail($id);
+        return new MemorandumResource($memorandum);
     }
 
     /**
@@ -56,7 +71,8 @@ class MemorandumController extends Controller
      */
     public function edit($id)
     {
-        //
+        $memorandum=Memorandum::find($id);
+        return $memorandum;
     }
 
     /**
@@ -68,7 +84,16 @@ class MemorandumController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $memorandum = Memorandum::findOrFail($id);
+        $memorandum->fecha_elaboracion=$request->fecha_elaboracion;
+        $memorandum->dirijido=$request->dirijido;
+        $memorandum->asunto=$request->asunto;
+        $memorandum->borrado=$request->borrado;
+
+        if($memorandum->save()){
+            return new MemorandumResource($memorandum);
+        }
+
     }
 
     /**
@@ -79,6 +104,9 @@ class MemorandumController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $memorandum = Memorandum::findOrFail($id);
+        if($memorandum->delete()){
+            return new MemorandumResource($memorandum);
+        }
     }
 }

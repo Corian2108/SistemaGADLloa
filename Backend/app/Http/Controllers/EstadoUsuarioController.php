@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Estado_usuario;
+use App\Http\Resources\EstadoUsuarioResource;
 
 class EstadoUsuarioController extends Controller
 {
@@ -13,7 +15,8 @@ class EstadoUsuarioController extends Controller
      */
     public function index()
     {
-        //
+        $estado_usuario= Estado_usuario::all();
+        return $estado_usuario;
     }
 
     /**
@@ -34,7 +37,12 @@ class EstadoUsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $estado_usuario= new Estado_usuario();
+        $estado_usuario->estado=$request->estado;
+        if($estado_usuario->save()){
+            return new EstadoUsuarioResource($estado_usuario);
+        }
+
     }
 
     /**
@@ -45,7 +53,8 @@ class EstadoUsuarioController extends Controller
      */
     public function show($id)
     {
-        //
+        $estado_usuario = Estado_usuario::findOrFail($id);
+        return new EstadoUsuarioResource($estado_usuario);
     }
 
     /**
@@ -56,7 +65,8 @@ class EstadoUsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $estado_usuario=Estado_usuario::find($id);
+        return $estado_usuario;
     }
 
     /**
@@ -68,7 +78,11 @@ class EstadoUsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $estado_usuario = Estado_usuario::findOrFail($id);
+        $estado_usuario->estado=$request->estado;
+        if($estado_usuario->save()){
+            return new EstadoUsuarioResource($estado_usuario);
+        }
     }
 
     /**
@@ -79,6 +93,9 @@ class EstadoUsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $estado_usuario = Estado_usuario::findOrFail($id);
+        if($estado_usuario->delete()){
+            return new EstadoUsuarioResource($estado_usuario);
+        }
     }
 }

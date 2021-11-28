@@ -8,7 +8,7 @@ class CretateFotosUsuariosTable extends Migration
 {
     public function up()
     {
-        Schema::create('fotos_usuarios', function (Blueprint $table) {
+        Schema::create('foto_usuarios', function (Blueprint $table) {
             //llave primaria
             $table->id();
             //llave foranea

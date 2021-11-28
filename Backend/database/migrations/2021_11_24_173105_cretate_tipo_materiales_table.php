@@ -8,7 +8,7 @@ class CretateTipoMaterialesTable extends Migration
 {
     public function up()
     {
-        Schema::create('tipo_materiales', function (Blueprint $table) {
+        Schema::create('tipo_materials', function (Blueprint $table) {
             //llave primaria
             $table->id();
             //campos

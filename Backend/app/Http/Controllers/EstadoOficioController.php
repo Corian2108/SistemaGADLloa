@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Estado_oficio;
+use App\Http\Resources\EstadoOficioResource;
 
 class EstadoOficioController extends Controller
 {
@@ -13,7 +15,8 @@ class EstadoOficioController extends Controller
      */
     public function index()
     {
-        //
+        $estado_oficio= Estado_oficio::all();
+        return $estado_oficio;
     }
 
     /**
@@ -34,7 +37,11 @@ class EstadoOficioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $estado_oficio= new Estado_oficio();
+        $estado_oficio->estado=$request->estado;
+        if($estado_oficio->save()){
+            return new EstadoOficioResource($estado_oficio);
+        }
     }
 
     /**
@@ -45,7 +52,8 @@ class EstadoOficioController extends Controller
      */
     public function show($id)
     {
-        //
+        $estado_oficio = Estado_oficio::findOrFail($id);
+        return new EstadoOficioResource($estado_oficio);
     }
 
     /**
@@ -56,7 +64,8 @@ class EstadoOficioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $estado_oficio=Estado_oficio::find($id);
+        return $estado_oficio;
     }
 
     /**
@@ -68,7 +77,12 @@ class EstadoOficioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $estado_oficio = Estado_oficio::findOrFail($id);
+        $estado_oficio->estado=$request->estado;
+        if($estado_oficio->save()){
+            return new EstadoOficioResource($estado_oficio);
+        }
+
     }
 
     /**
@@ -79,6 +93,9 @@ class EstadoOficioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $estado_oficio = Estado_oficio::findOrFail($id);
+        if($estado_oficio->delete()){
+            return new EstadoOficioResource($estado_oficio);
+        }
     }
 }

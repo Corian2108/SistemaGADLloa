@@ -34,12 +34,12 @@ class CretateAuditoriasTable extends Migration
                 ->onUpdate('cascade');
             $table->foreign('id_oficio_recibido')
                 ->references('id')
-                ->on('oficios_recibidos')
+                ->on('oficio_recibidos')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('id_oficio_enviado')
                 ->references('id')
-                ->on('oficios_enviados')
+                ->on('oficio_enviados')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('id_registro_llamada')
@@ -49,12 +49,12 @@ class CretateAuditoriasTable extends Migration
                 ->onUpdate('cascade');
             $table->foreign('id_memorandum')
                 ->references('id')
-                ->on('memorandums')
+                ->on('memoranda')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('id_inventario_materiales')
                 ->references('id')
-                ->on('inventario_materiales')
+                ->on('inventario_materials')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('id_inventario_activos')

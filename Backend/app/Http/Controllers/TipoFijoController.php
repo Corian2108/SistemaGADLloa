@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Tipo_fijo;
+use App\Http\Resources\TipoFijoResource;
 
 class TipoFijoController extends Controller
 {
@@ -13,7 +15,8 @@ class TipoFijoController extends Controller
      */
     public function index()
     {
-        //
+        $tipo_fijo= Tipo_fijo::all();
+        return $tipo_fijo;
     }
 
     /**
@@ -34,7 +37,11 @@ class TipoFijoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tipo_fijo= new Tipo_fijo();
+        $tipo_fijo->tipo=$request->tipo;
+        if($tipo_fijo->save()){
+            return new TipoFijoResource($tipo_fijo);
+        }
     }
 
     /**
@@ -45,7 +52,8 @@ class TipoFijoController extends Controller
      */
     public function show($id)
     {
-        //
+        $tipo_fijo = Tipo_fijo::findOrFail($id);
+        return new TipoFijoResource($tipo_fijo);
     }
 
     /**
@@ -56,7 +64,8 @@ class TipoFijoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tipo_fijo=Tipo_fijo::find($id);
+        return $tipo_fijo;
     }
 
     /**
@@ -68,7 +77,11 @@ class TipoFijoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tipo_fijo = Tipo_fijo::findOrFail($id);
+        $tipo_fijo->tipo=$request->tipo;
+        if($tipo_fijo->save()){
+            return new TipoFijoResource($tipo_fijo);
+        }
     }
 
     /**
@@ -79,6 +92,9 @@ class TipoFijoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tipo_fijo = Tipo_fijo::findOrFail($id);
+        if($tipo_fijo->delete()){
+            return new TipoFijoResource($tipo_fijo);
+        }
     }
 }

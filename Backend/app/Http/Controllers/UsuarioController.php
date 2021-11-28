@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Contrato;
-use App\Http\Resources\ContratoResource;
+use App\Models\User;
+use App\Http\Resources\UsuarioResource;
 
-class ContratoController extends Controller
+class UsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class ContratoController extends Controller
      */
     public function index()
     {
-        $contrato= Contrato::all();
-        return $contrato;
+        $user= User::all();
+        return $user;
     }
 
     /**
@@ -37,15 +37,18 @@ class ContratoController extends Controller
      */
     public function store(Request $request)
     {
-        $contrato= new Contrato();
-        $contrato->id_usuario=$request->id_usuario;
-        $contrato->inicio=$request->inicio;
-        $contrato->fin=$request->fin;
-        $contrato->horas_diarias=$request->horas_diarias;
-        $contrato->horas_mensuales=$request->horas_mensuales;
-        $contrato->borrado=$request->borrado;
-        if($contrato->save()){
-            return new ContratoResource($contrato);
+        $user= new User();
+        $user->id_rol=$request->id_rol;
+        $user->id_estado_usuario=$request->id_estado_usuario;
+        
+        $user->ci=$request->ci;
+        $user->nombre=$request->nombre;
+        $user->apellido=$request->apellido;
+        $user->email=$request->email;
+        $user->clave=$request->clave;
+
+        if($user->save()){
+            return new UsuarioResource($user);
         }
     }
 
@@ -57,8 +60,8 @@ class ContratoController extends Controller
      */
     public function show($id)
     {
-        $contrato = Contrato::findOrFail($id);
-        return new ContratoResource($contrato);
+        $user = User::findOrFail($id);
+        return new UsuarioResource($user);
     }
 
     /**
@@ -69,8 +72,8 @@ class ContratoController extends Controller
      */
     public function edit($id)
     {
-        $contrato=Contrato::find($id);
-        return $contrato;
+        $user=User::find($id);
+        return $user;
     }
 
     /**
@@ -82,14 +85,15 @@ class ContratoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $contrato = Contrato::findOrFail($id);
-        $contrato->inicio=$request->inicio;
-        $contrato->fin=$request->fin;
-        $contrato->horas_diarias=$request->horas_diarias;
-        $contrato->horas_mensuales=$request->horas_mensuales;
-        $contrato->borrado=$request->borrado;
-        if($contrato->save()){
-            return new ContratoResource($contrato);
+        $user = User::findOrFail($id);
+        $user->ci=$request->ci;
+        $user->nombre=$request->nombre;
+        $user->apellido=$request->apellido;
+        $user->email=$request->email;
+        $user->clave=$request->clave;
+
+        if($user->save()){
+            return new UsuarioResource($user);
         }
     }
 
@@ -101,9 +105,9 @@ class ContratoController extends Controller
      */
     public function destroy($id)
     {
-        $contrato = Contrato::findOrFail($id);
-        if($contrato->delete()){
-            return new ContratoResource($contrato);
+        $user = User::findOrFail($id);
+        if($user->delete()){
+            return new UsuarioResource($user);
         }
     }
 }

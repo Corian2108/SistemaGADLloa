@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Contrato;
-use App\Http\Resources\ContratoResource;
+use App\Models\Role;
+use App\Http\Resources\RolesResource;
 
-class ContratoController extends Controller
+class RolesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class ContratoController extends Controller
      */
     public function index()
     {
-        $contrato= Contrato::all();
-        return $contrato;
+        $rol= Role::all();
+        return $rol;
     }
 
     /**
@@ -37,17 +37,13 @@ class ContratoController extends Controller
      */
     public function store(Request $request)
     {
-        $contrato= new Contrato();
-        $contrato->id_usuario=$request->id_usuario;
-        $contrato->inicio=$request->inicio;
-        $contrato->fin=$request->fin;
-        $contrato->horas_diarias=$request->horas_diarias;
-        $contrato->horas_mensuales=$request->horas_mensuales;
-        $contrato->borrado=$request->borrado;
-        if($contrato->save()){
-            return new ContratoResource($contrato);
+        $rol= new Role();
+        $rol->rol=$request->rol;
+        if($rol->save()){
+            return new RolesResource($rol);
         }
-    }
+          
+     }
 
     /**
      * Display the specified resource.
@@ -57,8 +53,8 @@ class ContratoController extends Controller
      */
     public function show($id)
     {
-        $contrato = Contrato::findOrFail($id);
-        return new ContratoResource($contrato);
+        $rol = Role::findOrFail($id);
+        return new RolesResource($rol);    
     }
 
     /**
@@ -69,8 +65,8 @@ class ContratoController extends Controller
      */
     public function edit($id)
     {
-        $contrato=Contrato::find($id);
-        return $contrato;
+        $rol=Role::find($id);
+        return $rol;
     }
 
     /**
@@ -82,14 +78,10 @@ class ContratoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $contrato = Contrato::findOrFail($id);
-        $contrato->inicio=$request->inicio;
-        $contrato->fin=$request->fin;
-        $contrato->horas_diarias=$request->horas_diarias;
-        $contrato->horas_mensuales=$request->horas_mensuales;
-        $contrato->borrado=$request->borrado;
-        if($contrato->save()){
-            return new ContratoResource($contrato);
+        $rol = Role::findOrFail($id);
+        $rol->rol=$request->rol;
+        if($rol->save()){
+            return new RolesResource($rol);
         }
     }
 
@@ -101,9 +93,9 @@ class ContratoController extends Controller
      */
     public function destroy($id)
     {
-        $contrato = Contrato::findOrFail($id);
-        if($contrato->delete()){
-            return new ContratoResource($contrato);
+        $rol = Role::findOrFail($id);
+        if($rol->delete()){
+            return new RolesResource($rol);
         }
     }
 }

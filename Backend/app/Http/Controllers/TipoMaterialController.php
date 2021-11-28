@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Tipo_material;
+use App\Http\Resources\TipoMaterialResource;
 
 class TipoMaterialController extends Controller
 {
@@ -13,7 +15,8 @@ class TipoMaterialController extends Controller
      */
     public function index()
     {
-        //
+        $tipo_material= Tipo_material::all();
+        return $tipo_material;
     }
 
     /**
@@ -34,7 +37,11 @@ class TipoMaterialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tipo_material= new Tipo_material();
+        $tipo_material->tipo=$request->tipo;
+        if($tipo_material->save()){
+            return new TipoMaterialResource($tipo_material);
+        }
     }
 
     /**
@@ -45,7 +52,8 @@ class TipoMaterialController extends Controller
      */
     public function show($id)
     {
-        //
+        $tipo_material = tipo_material::findOrFail($id);
+        return new TipoMaterialResource($tipo_material);
     }
 
     /**
@@ -56,7 +64,8 @@ class TipoMaterialController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tipo_material=Tipo_material::find($id);
+        return $tipo_material;
     }
 
     /**
@@ -68,7 +77,11 @@ class TipoMaterialController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tipo_material = Tipo_material::findOrFail($id);
+        $tipo_material->tipo=$request->tipo;
+        if($tipo_material->save()){
+            return new TipoMaterialResource($tipo_material);
+        }
     }
 
     /**
@@ -79,6 +92,9 @@ class TipoMaterialController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tipo_material = Tipo_material::findOrFail($id);
+        if($tipo_material->delete()){
+            return new TipoMaterialResource($tipo_material);
+        }
     }
 }

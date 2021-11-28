@@ -8,10 +8,10 @@ class CretateMemorandumsTable extends Migration
 {
     public function up()
     {
-        Schema::create('memorandums', function (Blueprint $table) {
+        Schema::create('memoranda', function (Blueprint $table) {
             //Llave primaria
             $table->id();
-            //lave foranea
+            //llave foranea
             $table->unsignedBigInteger('id_estado_oficio');
             //campos
             $table->date('fecha_elaboracion');

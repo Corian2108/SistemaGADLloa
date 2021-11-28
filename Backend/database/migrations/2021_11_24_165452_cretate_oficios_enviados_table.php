@@ -8,7 +8,7 @@ class CretateOficiosEnviadosTable extends Migration
 {
     public function up()
     {
-        Schema::create('oficios_enviados', function (Blueprint $table) {
+        Schema::create('oficio_enviados', function (Blueprint $table) {
             //Llave primaria
             $table->id();
             //llave foranea
@@ -26,7 +26,7 @@ class CretateOficiosEnviadosTable extends Migration
             $table->string('nombre_receptor', 50);
             $table->string('institucion', 50);
             $table->string('nombre_remitente', 50);
-            $table->string('e-mail', 50);
+            $table->string('e_mail', 50);
             $table->boolean('borrado');
             $table->timestamps();
             //referencias

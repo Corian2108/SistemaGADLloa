@@ -8,7 +8,7 @@ class CretateInventarioMaterialesTable extends Migration
 {
     public function up()
     {
-        Schema::create('inventario_materiales', function (Blueprint $table) {
+        Schema::create('inventario_materials', function (Blueprint $table) {
             //llave primaria
             $table->id();
             //llave foranea
@@ -24,7 +24,7 @@ class CretateInventarioMaterialesTable extends Migration
             //referencias
             $table->foreign('id_tipo_materiales')
                 ->references('id')
-                ->on('tipo_materiales')
+                ->on('tipo_materials')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });

@@ -9,7 +9,7 @@ class CretateHojasRutaTable extends Migration
 {
     public function up()
     {
-        Schema::create('hojas_ruta', function (Blueprint $table) {
+        Schema::create('hoja_rutas', function (Blueprint $table) {
             //llave primaria
             $table->id();
             //llave foranea
@@ -30,7 +30,7 @@ class CretateHojasRutaTable extends Migration
             //referencia
             $table->foreign('id_oficio_recibido')
                 ->references('id')
-                ->on('oficios_recibidos')
+                ->on('oficio_recibidos')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });

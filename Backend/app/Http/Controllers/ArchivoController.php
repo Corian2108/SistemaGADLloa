@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Archivo;
+use App\Http\Resources\ArchivoResource;
 
 class ArchivoController extends Controller
 {
@@ -14,6 +16,8 @@ class ArchivoController extends Controller
     public function index()
     {
         //
+        $archivo = Archivo::all();
+        return $archivo;
     }
 
     /**
@@ -34,7 +38,15 @@ class ArchivoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $archivo = new Archivo();
+        $archivo-> id_auditoria= $request->id_auditoria;
+        $archivo-> ruta= $request->ruta;
+        $archivo-> borrado= $request->borrado;
+
+        if($archivo->save()){
+            return new ArchivoResource($archivo);
+        }
+
     }
 
     /**
@@ -45,7 +57,8 @@ class ArchivoController extends Controller
      */
     public function show($id)
     {
-        //
+        $archivo = Archivo::findOrFail($id);
+        return new ArchivoResource($archivo);
     }
 
     /**
@@ -56,7 +69,8 @@ class ArchivoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $archivo = Archivo::find($id);
+        return $archivo;
     }
 
     /**
@@ -68,7 +82,12 @@ class ArchivoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $archivo =Archivo::findOrFail($id);
+        $archivo-> ruta= $request->ruta;
+        $archivo-> borrado= $request->borrado;
+        if($archivo->save()){
+            return new ArchivoResource($archivo);
+        }
     }
 
     /**
@@ -79,6 +98,9 @@ class ArchivoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $archivo = Archivo::findOrFail($id);
+        if($archivo->delete()){
+            return new ArchivoResource($archivo);
+        } 
     }
 }
