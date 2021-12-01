@@ -1,0 +1,112 @@
+body {
+    position: absolute;
+    width: auto;
+    height: auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.container {
+    position: relative;
+    display: block;
+    border-style: solid;
+    border-radius: 16px;
+    border-color: rgba(80, 80, 80, 0.411);
+    border-width: 2px;
+    height: fit-content;
+    width: fit-content;
+    margin-top: 4%;
+    margin-left: 40%;
+    align-content: center;
+    text-align: center;
+    background-color: rgba(153, 153, 161, 0.24);
+}
+
+.forms {
+    position: relative;
+    display: block;
+    padding: 20px;
+}
+
+.title {
+    position: relative;
+    display: block;
+    margin-left: 41%;
+    margin-top: 5%;
+    padding: 10px;
+}
+
+.image {
+    position: relative;
+    display: block;
+    height: 130px;
+    width: 130px;
+    align-self: center;
+    padding: 0px;
+    margin-left: 44px;
+    margin-top: -45px;
+    margin-bottom: -15px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 100%;
+}
+
+.form-label {
+    position: relative;
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14 pt;
+}
+
+.form-input {
+    position: relative;
+    display: block;
+    padding: 6px;
+    border-radius: 10px;
+    border-color: rgba(153, 153, 161, 0.555);
+    border-style: solid;
+}
+
+.router-link {
+    position: relative;
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: black;
+    text-decoration: none;
+    transition: 1s;
+    margin-left: 42.5%;
+    margin-top: 15px;
+    align-self: center;
+    width: fit-content;
+}
+
+.router-link:hover {
+    font-size: 14pt;
+    color: rgb(49, 49, 170);
+}
+
+.btn {
+    position: relative;
+    display: block;
+    align-content: center;
+    text-align: center;
+    width: fit-content;
+    height: fit-content;
+}
+
+.btn-primary {
+    margin-top: 15px;
+    margin-bottom: -5px;
+    margin-left: 23%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(25, 78, 177);
+    color: white;
+    font-weight: bold;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border-style: none;
+}
+
+.btn-primary:hover {
+    background-color: rgb(17, 54, 122);
+}
