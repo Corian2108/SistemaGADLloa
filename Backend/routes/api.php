@@ -20,9 +20,16 @@ use App\Http\Controllers\TipoFijoController;
 use App\Http\Controllers\TipoMaterialController;
 use App\Http\Controllers\UsuarioController;
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+/* Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+}); */
+
+//Autenticación
+Route::post('login', 'App\Http\Controllers\UsuarioController@authenticate');
+Route::group(['middleware' => ['jwt.verify']], function () {
+    Route::post('user', 'App\Http\Controllers\UsuarioController@getAuthenticatedUser');
 });
+
 //Archivo
 Route::get('/archivo',[ArchivoController::class, 'index']);
 Route::post('/archivo/create',[ArchivoController::class, 'store']);
