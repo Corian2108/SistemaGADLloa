@@ -11,7 +11,7 @@ export class LoginServiceService {
   constructor(private http: HttpClient, private coockies: CookieService) {}
 
   login(user: any): Observable<any> {
-    return this.http.post('192.168.100.61:8000/api/login', user);
+    return this.http.post('http://192.168.100.61:8000/api/login', user);
   }
 
   setToken(token: string) {

@@ -1,72 +1,72 @@
 <form (ngSubmit)="insertData()">
     <div class="form-group">
-      <label for="name">Ci</label>
-      <input type="text" name="ci" class="form-control" [(ngModel)]="registros.ci">
+        <label for="name">Ci</label>
+        <input type="text" name="ci" class="form-control" [(ngModel)]="registros.ci">
     </div>
     <div class="form-group">
-      <label for="last_name">Nombre</label>
-      <input type="text" name="nombre" class="form-control" [(ngModel)]="registros.nombre">
+        <label for="last_name">Nombre</label>
+        <input type="text" name="nombre" class="form-control" [(ngModel)]="registros.nombre">
     </div>
-    
+
     <div class="form-group">
-      <label for="identification">Apellido</label>
-      <input type="text" name="apellido" class="form-control" [(ngModel)]="registros.apellido">
-    </div >
+        <label for="identification">Apellido</label>
+        <input type="text" name="apellido" class="form-control" [(ngModel)]="registros.apellido">
+    </div>
     <div class="form-group">
         <label for="identification">Email</label>
         <input type="text" name="email" class="form-control" [(ngModel)]="registros.email">
-      </div >
-      <div class="form-group">
-        <label for="identification">Clave</label>
-        <input type="text" name="clave" class="form-control" [(ngModel)]="registros.clave">
-      </div >
+    </div>
     <div class="form-group">
-      <label for="identification">Rol</label>
-      <select type="text" name="identification" class="form-control" [(ngModel)]="registros.id_rol">
+        <label for="identification">Clave</label>
+        <input type="text" name="clave" class="form-control" [(ngModel)]="registros.password">
+    </div>
+    <div class="form-group">
+        <label for="identification">Rol</label>
+        <select type="text" name="identification" class="form-control" [(ngModel)]="registros.id_rol">
         <option *ngFor="let rol of rol" value={{rol.id}}>{{rol.rol}}</option>
       </select>
-    </div >
+    </div>
     <div class="form-group">
         <label for="identification">Estado</label>
         <select type="text" name="identification" class="form-control" [(ngModel)]="registros.id_estado_usuario">
           <option *ngFor="let estado of estado" value={{estado.id}}>{{estado.estado}}</option>
         </select>
-      </div >
-   
+    </div>
+
     <br>
-    
-    
+
+
     <button class="btn btn-dark btn-sm mt-4">Registrar</button>
-  </form>
-  
-  <table class="table">
-       <thead>
-         <tr>
-          <th scope="col">id</th>
-           <th scope="col">Ci</th>
-           <th scope="col">Nombre</th>
-           <th scope="col">Apellido</th>
-           <th scope="col">Email</th>
-           <th scope="col">Clave</th>
-           <th scope="col">Rol</th>
-           <th scope="col">Estado</th>
-           <th scope="col">Acción</th>
-           
-         </tr>
-       </thead>
-       <tbody>
-         <tr *ngFor="let registros of registro">
-          <th scope="row">{{registros.id}}</th>
-          <th scope="row">{{registros.ci}}</th>
-           <th scope="row">{{registros.nombre}}</th>
-           <th scope="row">{{registros.apellido}}</th>
-           <td  scope="row"> {{registros.email}}</td>
-           <td  scope="row">{{registros.clave}}</td>
-           <td  scope="row">{{registros.rol}}</td>
-           <td  scope="row">{{registros.estado}}</td>
-           
-           
-           <td><button class="btn btn-danger" (click)="deleteData(registros.id)">Eliminar</button></td>
-           <td><button class="btn btn-primary" routerLink="edit/{{registros.id}}">Editar</button></td>
-         </tbody>
-       </table>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Ci</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Email</th>
+            <th scope="col">Clave</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Acción</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let registros of registro">
+            <th scope="row">{{registros.id}}</th>
+            <th scope="row">{{registros.ci}}</th>
+            <th scope="row">{{registros.nombre}}</th>
+            <th scope="row">{{registros.apellido}}</th>
+            <td scope="row"> {{registros.email}}</td>
+            <td scope="row">{{registros.password}}</td>
+            <td scope="row">{{registros.rol}}</td>
+            <td scope="row">{{registros.estado}}</td>
+
+
+            <td><button class="btn btn-danger" (click)="deleteData(registros.id)">Eliminar</button></td>
+            <td><button class="btn btn-primary" routerLink="edit/{{registros.id}}">Editar</button></td>
+    </tbody>
+</table>

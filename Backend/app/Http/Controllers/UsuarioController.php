@@ -17,7 +17,7 @@ class UsuarioController extends Controller
 
     public function authenticate(Request $request)
     {
-        $credentials = $request->only('email', 'clave');
+        $credentials = $request->only('email', 'password');
         try {
             if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json(['error' => 'invalid_credentials'], 400);
@@ -63,7 +63,7 @@ class UsuarioController extends Controller
             'nombre' => 'required|string',
             'apellido' => 'required|string',
             'email' => 'required|string|email|unique:users',
-            'clave' => 'required|string',
+            'password' => 'required|string',
         ]);
 
         if($validator->fails()){
@@ -77,7 +77,7 @@ class UsuarioController extends Controller
             'nombre' => $request->get('nombre'),
             'apellido' => $request->get('apellido'),
             'email' => $request->get('email'),
-            'clave' => Hash::make($request->get('clave')),
+            'password' => Hash::make($request->get('password')),
         ]);
 
         $token = JWTAuth::fromUser($user);
@@ -96,7 +96,7 @@ class UsuarioController extends Controller
         $user->nombre=$request->nombre;
         $user->apellido=$request->apellido;
         $user->email=$request->email;
-        $user->clave=Hash::make($request->clave);
+        $user->password = Hash::make($request->password);
 
         if($user->save()){
             return response()->json([
@@ -117,7 +117,7 @@ class UsuarioController extends Controller
     public function index1()
     {
         $data=DB::table('users')
-        ->select('users.id','users.nombre','users.ci','users.apellido','users.email','users.clave','roles.rol','estado_usuarios.estado')
+            ->select('users.id', 'users.nombre', 'users.ci', 'users.apellido', 'users.email', 'users.password', 'roles.rol', 'estado_usuarios.estado')
         ->join('roles',"users.id_rol", "=", "roles.id")
         ->join('estado_usuarios',"users.id_estado_usuario", "=", "estado_usuarios.id")
         ->get();
@@ -139,7 +139,7 @@ class UsuarioController extends Controller
         $user->nombre=$request->nombre;
         $user->apellido=$request->apellido;
         $user->email=$request->email;
-        $user->clave=$request->clave;
+        $user->password = $request->password;
 
         if($user->save()){
             return new UsuarioResource($user);
