@@ -149,6 +149,7 @@ Route::delete('/tipo_material/{id}',[TipoMaterialController::class, 'destroy']);
 
 //Users
 Route::get('/user',[UsuarioController::class, 'index']);
+Route::get('/user/rol',[UsuarioController::class, 'index1']);
 Route::post('/user/create',[UsuarioController::class, 'store']);
 Route::get('/user/{id}',[UsuarioController::class, 'edit']);
 Route::put('/user/{id}',[UsuarioController::class, 'update']);

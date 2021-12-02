@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Resources\UsuarioResource;
+use Illuminate\Support\Facades\DB;
 
 class UsuarioController extends Controller
 {
@@ -63,6 +64,15 @@ class UsuarioController extends Controller
         $user = User::findOrFail($id);
         return new UsuarioResource($user);
     }
+    public function index1()
+    {
+        $data=DB::table('users')
+        ->select('users.id','users.nombre','users.apellido','users.email','users.clave','roles.rol','estado_usuarios.estado')
+        ->join('roles',"users.id_rol", "=", "roles.id")
+        ->join('estado_usuarios',"users.id_estado_usuario", "=", "estado_usuarios.id")
+        ->get();
+        return $data;
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -86,6 +96,8 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
+        $user->id_estado_usuario=$request->id_estado_usuario;
+
         $user->ci=$request->ci;
         $user->nombre=$request->nombre;
         $user->apellido=$request->apellido;
