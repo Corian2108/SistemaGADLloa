@@ -31,9 +31,9 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         Contrato::factory(10)->create();
         Registro_llamada::factory(20)->create();
-        //Estado_oficio::factory(6)->create();
-        //Oficio_recibido::factory(20)->create();
-        //Oficio_enviado::factory(20)->create();
+        Estado_oficio::factory(5)->create();
+        Oficio_recibido::factory(20)->create();
+        Oficio_enviado::factory(20)->create();
         Memorandum::factory(20)->create();
         Hoja_ruta::factory(20)->create();
         Estado_fijo::factory(3)->create();
