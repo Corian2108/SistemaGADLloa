@@ -25,7 +25,9 @@ use App\Http\Controllers\UsuarioController;
 }); */
 
 //Autenticación
-Route::post('login', 'App\Http\Controllers\UsuarioController@authenticate');
+Route::post('/login', 'App\Http\Controllers\UsuarioController@authenticate');
+Route::post('/register', 'App\Http\Controllers\UsuarioController@register');
+
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::post('user', 'App\Http\Controllers\UsuarioController@getAuthenticatedUser');
 });

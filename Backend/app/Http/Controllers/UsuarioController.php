@@ -54,6 +54,37 @@ class UsuarioController extends Controller
     {
         //
     }
+    public function register(Request $request)
+    {
+            $validator = Validator::make($request->all(), [
+            'id_rol' => 'required|integer',
+            'id_estado_usuario' => 'required|integer',
+            'ci' => 'required|integer',
+            'nombre' => 'required|string',
+            'apellido' => 'required|string',
+            'email' => 'required|string|email|unique:users',
+            'clave' => 'required|string',
+        ]);
+
+        if($validator->fails()){
+                return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $user = User::create([
+            'id_rol' => $request->get("id_rol"),
+            'id_estado_usuario' => $request->get('id_estado_usuario'),
+            'ci' => $request->get('ci'),
+            'nombre' => $request->get('nombre'),
+            'apellido' => $request->get('apellido'),
+            'email' => $request->get('email'),
+            'clave' => Hash::make($request->get('clave')),
+        ]);
+
+        $token = JWTAuth::fromUser($user);
+
+        return response()->json(compact('user','token'),201);
+    }
+
 
     public function store(Request $request)
     {
@@ -65,11 +96,17 @@ class UsuarioController extends Controller
         $user->nombre=$request->nombre;
         $user->apellido=$request->apellido;
         $user->email=$request->email;
-        $user->clave=$request->clave;
+        $user->clave=Hash::make($request->clave);
 
         if($user->save()){
-            return new UsuarioResource($user);
+            return response()->json([
+                'message'=>"guardado",
+                'user'=>$user
+            ],201);
         }
+        $token = JWTAuth::fromUser($user);
+
+        return response()->json(compact('user','token'),201);
     }
 
     public function show($id)
@@ -80,7 +117,7 @@ class UsuarioController extends Controller
     public function index1()
     {
         $data=DB::table('users')
-        ->select('users.id','users.nombre','users.apellido','users.email','users.clave','roles.rol','estado_usuarios.estado')
+        ->select('users.id','users.nombre','users.ci','users.apellido','users.email','users.clave','roles.rol','estado_usuarios.estado')
         ->join('roles',"users.id_rol", "=", "roles.id")
         ->join('estado_usuarios',"users.id_estado_usuario", "=", "estado_usuarios.id")
         ->get();
