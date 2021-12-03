@@ -3,6 +3,20 @@ body {
     width: auto;
     height: auto;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+}
+
+.display {
+    text-align: center;
+}
+
+.title {
+    position: relative;
+    display: block;
+    margin: auto;
+    margin-top: -60px;
+    padding: 10px;
+    margin-bottom: 60px;
 }
 
 .container {
@@ -14,8 +28,7 @@ body {
     border-width: 2px;
     height: fit-content;
     width: fit-content;
-    margin-top: 4%;
-    margin-left: 40%;
+    margin: auto;
     align-content: center;
     text-align: center;
     background-color: rgba(153, 153, 161, 0.24);
@@ -25,14 +38,8 @@ body {
     position: relative;
     display: block;
     padding: 20px;
-}
-
-.title {
-    position: relative;
-    display: block;
-    margin-left: 41%;
-    margin-top: 5%;
-    padding: 10px;
+    margin: auto;
+    text-align: center;
 }
 
 .image {
@@ -42,8 +49,8 @@ body {
     width: 130px;
     align-self: center;
     padding: 0px;
-    margin-left: 44px;
-    margin-top: -45px;
+    margin: auto;
+    margin-top: -50px;
     margin-bottom: -15px;
     background-color: rgb(255, 255, 255);
     border-radius: 100%;
@@ -74,7 +81,7 @@ body {
     color: black;
     text-decoration: none;
     transition: 1s;
-    margin-left: 42.5%;
+    margin: auto;
     margin-top: 15px;
     align-self: center;
     width: fit-content;
@@ -88,7 +95,7 @@ body {
 .btn {
     position: relative;
     display: block;
-    align-content: center;
+    margin: auto;
     text-align: center;
     width: fit-content;
     height: fit-content;
@@ -97,7 +104,6 @@ body {
 .btn-primary {
     margin-top: 15px;
     margin-bottom: -5px;
-    margin-left: 23%;
     padding: 10px;
     border-radius: 10px;
     background-color: rgb(25, 78, 177);
